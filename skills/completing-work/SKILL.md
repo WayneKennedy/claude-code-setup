@@ -9,10 +9,9 @@ description: >
 
 # Completing Work
 
-Tests are GREEN. Implementation is functionally complete. 
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
 
-But you are NOT done yet. You MUST complete documentation and artifacts before
-marking the work item as implemented.
+Tests are GREEN. Implementation is functionally complete. Complete documentation, transition to implemented, and proceed to validation.
 
 ## Completion Checklist
 
@@ -206,13 +205,23 @@ transition_work_item(work_item_id='<CR-ID>', new_status='implemented')
 Work item transitioned to `implemented`
 ```
 
-## Gate: Do Not Transition If
+## Blocking (STOP)
 
-- Imp notes not created
-- Data model changes not documented in LDM
-- API changes not documented in Interface
-- Semantic tags not added
-- Tests failing
-- Implementation refs not recorded
+- Tests now failing (regression introduced)
+- Cannot determine what was implemented (shouldn't happen)
+- MCP tools failing repeatedly
 
-The work is not complete until documentation is complete.
+## Non-Blocking (PROCEED)
+
+- Imp notes could be more detailed (write what you know)
+- LDM structure choices (follow existing patterns)
+- Tag naming unclear (use sensible conventions)
+- Interface format questions (match existing specs)
+
+## Completion
+
+After documentation is complete:
+1. Transition to `implemented`
+2. Proceed immediately to validation phase
+
+**Do NOT wait for confirmation.**

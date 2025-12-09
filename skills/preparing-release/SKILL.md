@@ -9,8 +9,9 @@ description: >
 
 # Preparing Release
 
-Work items are `validated` and ready for deployment. Deployment requires an
-approved Release.
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
+
+Work items are `validated` and ready for deployment. Create release, deploy, and complete unless blocked.
 
 ## The Deployment Gate
 
@@ -178,13 +179,38 @@ update_work_item(
 - Return to validation phase
 - Or remove from release and deploy without it
 
-## Gate: Do Not Deploy If
+## Blocking (STOP)
 
-- No approved release exists
+- Release not approved (must wait for approval)
 - Work items not validated
-- Tests failing
-- Conflicts detected
-- Release not approved
+- Tests failing on deployment branch
+- Conflicts detected (must resolve first)
+- Deployment fails after 2 attempts
+
+## Non-Blocking (PROCEED)
+
+- Release naming conventions (use sensible defaults)
+- Minor pre-deployment check warnings (note and proceed if not critical)
+- Version numbering (follow existing pattern or use date-based)
+
+## Retry Logic
+
+If deployment fails:
+1. Check logs: `gh run view --log-failed`
+2. Fix the issue
+3. Push again
+
+After 2 attempts, **STOP** and ask for help.
+
+## Completion
+
+After successful deployment:
+1. Transition release to `deployed`
+2. Verify in production
+3. Transition to `completed`
+4. Report completion with summary
+
+**Do NOT wait for confirmation at each step.**
 
 ## After Deployment
 

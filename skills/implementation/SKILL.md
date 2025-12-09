@@ -8,7 +8,9 @@ description: >
 
 # Implementation
 
-Tests are RED. Now write the minimum code to make them GREEN.
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
+
+Tests are RED. Now write the minimum code to make them GREEN. Implement and proceed to completing-work unless blocked.
 
 ## The Green Phase
 
@@ -135,12 +137,28 @@ As you implement:
 - "This would be better if..." → No, make it work first
 - "While I'm here..." → No, stay focused on the CR
 
-## Gate: Do Not Proceed If
+## Blocking (STOP)
 
-- Any test is still RED (keep implementing)
-- You've added untested code (write a test or remove it)
-- Tests are flaky/inconsistent (fix reliability first)
+- Test won't pass after 3 fix attempts (ask for help)
+- Fundamental design question with no clear answer
+- Security concern requiring explicit authorization
 
-## Completion Criteria
+## Non-Blocking (PROCEED)
 
-All tests GREEN → Proceed to completing-work phase
+- Multiple valid implementation approaches (pick simplest)
+- Naming decisions (follow existing patterns)
+- Minor refactoring choices (make it work first)
+- Edge case handling not in tests (don't add untested code)
+
+## Retry Logic
+
+If a test won't pass:
+1. Re-read the test and AC
+2. Debug to understand actual vs expected
+3. Fix and retry
+
+After 3 attempts, **STOP** and ask for help.
+
+## Completion
+
+All tests GREEN → Proceed immediately to completing-work phase. **Do NOT wait for confirmation.**

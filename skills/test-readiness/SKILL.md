@@ -8,7 +8,9 @@ description: >
 
 # Test Readiness
 
-You understand the CR scope. Now establish test coverage BEFORE writing implementation.
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
+
+You understand the CR scope. Now establish test coverage BEFORE writing implementation. Write tests and proceed to implementation unless blocked.
 
 ## The TDD Contract
 
@@ -106,11 +108,20 @@ Before proceeding to implementation:
 ✅ All ACs have failing tests
 ```
 
-## Gate: Do Not Proceed If
+## Blocking (STOP)
 
-- Any AC lacks a corresponding test
-- Any new test is passing (should be RED)
-- Test suite has unrelated failures (fix these first)
+- Test suite won't run (environment broken)
+- AC fundamentally untestable and cannot be clarified
+- Cannot determine what to test (requirement too vague)
+
+## Non-Blocking (PROCEED)
+
+- Test naming convention unclear (follow existing patterns)
+- Not sure which test file to use (pick sensible location)
+- AC wording imprecise but testable intent is clear
+- Some tests passing when expected to fail (verify behaviour exists, proceed if intentional)
+
+**Do NOT wait for confirmation.** Write tests, verify RED, proceed to implementation.
 
 ## Common Patterns
 
@@ -137,4 +148,4 @@ def test_invalid_input_raises_validation_error():
         process_input(invalid_data)
 ```
 
-Only proceed to implementation phase when all AC tests are RED.
+Once tests are RED, proceed immediately to implementation phase.

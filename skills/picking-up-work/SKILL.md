@@ -8,7 +8,9 @@ description: >
 
 # Picking Up Work
 
-Before writing any code, you MUST understand the full scope of the work.
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
+
+Before writing any code, you MUST understand the full scope of the work. Gather context and proceed to test-readiness unless blocked.
 
 ## Step 1: Verify CR Exists and Is Approved
 
@@ -89,41 +91,30 @@ get_requirement(requirement_id='<LDM-ID>')
 get_requirement(requirement_id='<INTERFACE-ID>')
 ```
 
-## Step 6: Summarise Understanding
+## Step 6: Summarise and Proceed
 
-Before proceeding, state your understanding:
+Log your understanding briefly, then proceed immediately to test-readiness:
 
 ```
-## Work Item: <CR-ID>
-**Title:** <title>
-**Status:** <status>
-
-### Scope
-<Brief description of what this CR accomplishes>
-
-### Affected Requirements
-1. <HRID>: <title>
-   - ACs: <count> (<testable count> testable)
-   - Dependencies: <met/unmet>
-
-### Key Data Models
-- <LDM entries relevant to this work>
-
-### Interfaces
-- <Interface specs relevant to this work>
-
-### Implementation Approach
-<Your high-level approach to implementing this>
-
-### Risks/Questions
-- <Any uncertainties or clarifications needed>
+## Picking Up: <CR-ID> - <title>
+Status: <status>
+Requirements: <count> affected
+ACs: <count> total (<testable count> testable)
+Dependencies: <met/unmet>
 ```
 
-## Gate: Do Not Proceed If
+**Do NOT wait for confirmation.** Proceed to test-readiness unless blocked.
 
-- CR is not approved
-- Any AC is not testable (needs clarification first)
-- Dependencies are not code-complete
-- You don't understand the scope
+## Blocking (STOP)
 
-Only proceed to test-readiness phase when you have full clarity.
+- CR is not approved (status must be `approved` or `in_progress`)
+- CR not found
+- Critical dependencies not met (blocking work items incomplete)
+
+## Non-Blocking (PROCEED)
+
+- Minor AC ambiguity (interpret reasonably, note assumption)
+- Missing optional LDM/interface details (implement what you can)
+- Unclear implementation approach (choose sensible option)
+
+If blocked, inform user of the specific blocker. Otherwise, proceed directly to test-readiness phase.

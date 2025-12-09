@@ -9,7 +9,9 @@ description: >
 
 # Validation
 
-A work item is `implemented` and needs validation against acceptance criteria.
+**Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
+
+A work item is `implemented` and needs validation against acceptance criteria. Validate and proceed to preparing-release unless blocked.
 
 ## Agent Identity: Tester
 
@@ -178,11 +180,27 @@ Do NOT transition to validated. Return to developer with specific issues.
 - Note discrepancy in report
 - Recommend AC refinement for future
 
-## Gate: Cannot Validate If
+## Blocking (STOP)
 
 - Work item is not `implemented`
-- Using developer agent (must be tester)
-- Cannot verify ACs (missing access, broken environment)
+- Cannot verify AC (environment broken, missing access)
+- AC fundamentally ambiguous with no reasonable interpretation
+- Any AC definitively not met (return to developer)
+
+## Non-Blocking (PROCEED)
+
+- AC wording imprecise but implementation clearly satisfies intent
+- Minor gaps in test coverage (note, but AC can still be met)
+- Documentation imperfect but adequate
+- Interpretation judgment calls (document your interpretation)
+
+## Completion
+
+If all ACs are met:
+1. Transition to `validated`
+2. Proceed immediately to preparing-release phase
+
+If ACs are not met, document specific issues and return to developer. **Do NOT wait for confirmation on pass/fail decision.**
 
 ## After Validation
 
