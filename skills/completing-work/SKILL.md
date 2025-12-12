@@ -1,22 +1,22 @@
 ---
 name: completing-work
 description: >
-  Activates when tests are green and implementation is functionally complete.
-  Use when finishing work, wrapping up a CR, preparing to mark implemented,
-  creating implementation notes, updating data models, or adding semantic tags.
-  MUST complete before transitioning work item to implemented.
+  Activates after local and remote testing pass. Use when finishing work,
+  wrapping up a CR, preparing to mark implemented, creating implementation
+  notes, updating data models, or adding semantic tags. MUST complete before
+  transitioning work item to implemented.
 ---
 
 # Completing Work
 
 **Autonomous by default.** See [AUTONOMOUS.md](../AUTONOMOUS.md) for blocking vs non-blocking guidance.
 
-Tests are GREEN. Implementation is functionally complete. Complete documentation, transition to implemented, and proceed to validation.
+Local and remote testing passed. Implementation is verified working in production. Complete documentation and transition to implemented.
 
 ## Session Context
 
 This skill expects:
-- Work Item context from a resumed session (after implementation), OR
+- Work Item context from a resumed session (after remote-test), OR
 - Explicit invocation: "Load skill completing-work for CR-042"
 
 If no Work Item context is available, ask for the Work Item ID before proceeding.

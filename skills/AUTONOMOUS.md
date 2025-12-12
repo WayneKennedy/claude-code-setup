@@ -40,7 +40,7 @@ Make a reasonable decision and document it. Do NOT stop.
 - **Proceed**: When CR exists, is approved/in_progress, and you can fetch requirements
 - **Block**: CR missing, not approved, requirements not found
 
-### test-readiness
+### test-readiness (tester agent)
 - **Proceed**: When you can write tests for ACs, even if test naming is a judgment call
 - **Block**: AC fundamentally untestable, cannot run test suite
 
@@ -48,11 +48,19 @@ Make a reasonable decision and document it. Do NOT stop.
 - **Proceed**: When making tests green, choosing between equivalent implementations
 - **Block**: Test won't pass after 3 attempts, fundamental design question
 
+### local-test (tester agent)
+- **Proceed**: Containers healthy, system tests pass, smoke tests demonstrate functionality
+- **Block**: Containers won't start, migrations fail, system tests fail after 3 attempts
+
+### remote-test (tester agent)
+- **Proceed**: Deployment passes, health checks pass, smoke tests match local behaviour
+- **Block**: Deployment fails, health check fails, critical smoke test fails
+
 ### completing-work
 - **Proceed**: Creating imp notes, updating LDM/interfaces, adding tags
 - **Block**: Unsure what was actually implemented (shouldn't happen)
 
-### validation
+### validation (tester agent)
 - **Proceed**: Verifying ACs, marking met/unmet
 - **Block**: Cannot verify AC (env broken), AC ambiguous with no reasonable interpretation
 

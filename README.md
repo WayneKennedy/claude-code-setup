@@ -34,12 +34,29 @@ This creates symlinks from `~/.claude/` to this repo, so:
 
 ## Skills
 
+### TarkaFlow Build Pipeline
+
+Skills execute in this order for implementation work:
+
+| # | Skill | Agent | Purpose |
+|---|-------|-------|---------|
+| 1 | `picking-up-work` | code | Select CR, verify readiness, gather context |
+| 2 | `test-readiness` | tester | Write tests for ACs (TDD Red phase) |
+| 3 | `implementation` | code | Make tests pass (TDD Green/Refactor) |
+| 4 | `local-test` | tester | Switch to local mode, run system tests locally |
+| 5 | `remote-test` | tester | Commit, push, monitor deployment, smoke test remote |
+| 6 | `completing-work` | code | Create imp/ldm/interface artifacts, transition to implemented |
+| 7 | `validation` | tester | Verify ACs met, transition to validated |
+| 8 | `preparing-release` | release_manager | Bundle validated work items for deployment |
+
+### Supporting Skills
+
 | Skill | Purpose |
 |-------|---------|
-| `deployment-sme` | 16 battle-tested patterns for GitHub Actions, Docker, SSH deployments |
-| `implement-feature` | Full workflow for implementing RaaS requirements with quality gates |
-| `implement-highest-priority` | Deprecated - use implement-feature instead |
-| `infrastructure-agent` | VPS bootstrap and hardening workflow |
+| `review-work-item` | Review and impact assess TarkaFlow Work Items (CR, BUG, DEBT) |
+| `deployment-sme` | Battle-tested patterns for GitHub Actions, Docker, SSH deployments |
+| `bootstrap-vps` | VPS bootstrap and hardening workflow |
+| `tarkaflow-developer-context` | Core TarkaFlow context (loaded at session start) |
 
 ## MCP Server Setup
 
