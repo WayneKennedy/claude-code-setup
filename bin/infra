@@ -1,0 +1,3 @@
+#!/bin/bash
+# infra - Common Infra tmux session
+cd ~/Code/common-infra && exec tmux new -As infra

@@ -1,0 +1,5 @@
+#!/bin/bash
+# Claude Code - Skip Permissions
+# Starts Claude without permission prompts
+clear
+exec /home/wkenn/.local/bin/claude --dangerously-skip-permissions "$@"

@@ -1,0 +1,3 @@
+#!/bin/bash
+# aos - Agency OS tmux session
+cd ~/Code/agency-os && exec tmux new -As aos

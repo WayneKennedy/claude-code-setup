@@ -53,10 +53,48 @@ for item in $ITEMS; do
 done
 
 echo ""
+
+# Handle bin items (symlink to ~/.local/bin/)
+BIN_DIR="$SCRIPT_DIR/bin"
+if [ -d "$BIN_DIR" ]; then
+    mkdir -p ~/.local/bin
+
+    for item in "$BIN_DIR"/*; do
+        [ -e "$item" ] || continue
+        name=$(basename "$item")
+        target="$HOME/.local/bin/$name"
+        source="$item"
+
+        # Handle existing file
+        if [ -e "$target" ] || [ -L "$target" ]; then
+            if [ -L "$target" ]; then
+                current_link=$(readlink "$target")
+                if [ "$current_link" = "$source" ]; then
+                    echo "OK:   bin/$name (already linked)"
+                    continue
+                else
+                    echo "UPDATE: bin/$name (was linked to $current_link)"
+                    rm "$target"
+                fi
+            else
+                backup="$target.backup.$(date +%Y%m%d-%H%M%S)"
+                echo "BACKUP: bin/$name -> $backup"
+                mv "$target" "$backup"
+            fi
+        fi
+
+        ln -s "$source" "$target"
+        echo "LINK: bin/$name -> $source"
+    done
+fi
+
+echo ""
 echo "Done. Your ~/.claude/ now symlinks to this repo."
+echo "      Your ~/.local/bin/ commands are also linked."
 echo ""
 echo "To verify:"
 echo "  ls -la ~/.claude/CLAUDE.md"
 echo "  ls -la ~/.claude/skills"
+echo "  ls -la ~/.local/bin/cc"
 echo ""
 echo "Changes you make will be tracked in git. Remember to commit and push."

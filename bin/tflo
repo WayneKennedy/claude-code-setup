@@ -1,0 +1,3 @@
+#!/bin/bash
+# tflo - Tarka Flow tmux session
+cd ~/Code/tarka-flow && exec tmux new -As tflo

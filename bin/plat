@@ -1,0 +1,3 @@
+#!/bin/bash
+# plat - Common Platform tmux session
+cd ~/Code/common-platform && exec tmux new -As plat
