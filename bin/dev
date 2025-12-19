@@ -1,0 +1,3 @@
+#!/bin/bash
+# dev - Local dev setup tmux session
+cd ~/Code/local-dev-setup && exec tmux new -As dev
