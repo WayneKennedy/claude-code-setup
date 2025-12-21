@@ -7,11 +7,10 @@
 - **Note**: When on this machine, you are working with Wayne, not Aaron
 
 ## Environment
-- **Operating System**: WSL2 (Ubuntu) on Windows
+- **Operating System**: Native Ubuntu Linux
 - **SSH Configuration**:
-  - SSH keys stored locally in WSL (`~/.ssh/`)
+  - SSH keys stored in `~/.ssh/`
   - Standard SSH agent for authentication
-  - Enables remote terminal access without Windows dependencies
 
 ## Communication Preferences
 - Professional, concise technical communication

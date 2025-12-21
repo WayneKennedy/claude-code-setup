@@ -88,6 +88,19 @@ if [ -d "$BIN_DIR" ]; then
     done
 fi
 
+# Ensure ~/.local/bin is in PATH via .bashrc
+BASHRC="$HOME/.bashrc"
+PATH_LINE='export PATH="$HOME/.local/bin:$PATH"'
+if ! grep -qF '.local/bin' "$BASHRC" 2>/dev/null; then
+    echo "" >> "$BASHRC"
+    echo "# Added by local-dev-setup install.sh" >> "$BASHRC"
+    echo "$PATH_LINE" >> "$BASHRC"
+    echo "PATH:  Added ~/.local/bin to ~/.bashrc"
+    echo "       Run 'source ~/.bashrc' or open a new terminal to apply."
+else
+    echo "PATH:  ~/.local/bin already in ~/.bashrc"
+fi
+
 echo ""
 echo "Done. Your ~/.claude/ now symlinks to this repo."
 echo "      Your ~/.local/bin/ commands are also linked."
