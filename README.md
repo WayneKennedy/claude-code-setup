@@ -60,12 +60,74 @@ Skills execute in this order for implementation work:
 
 ## MCP Server Setup
 
-MCP servers contain API keys and must be configured per-machine:
+MCP servers provide Claude Code with access to Originate's internal tools. These contain API keys and must be configured per-machine.
+
+### Required Servers
+
+| Server | URL | Purpose |
+|--------|-----|---------|
+| `aos` | https://aos.originate.group/mcp | Agency OS - audits, tasks, growth plans, alerts |
+| `tflo` | https://tarkaflow.ai/mcp | TarkaFlow - requirements, work items, releases |
+| `infra` | https://infra.originate.group/mcp | Infrastructure - environments, clusters, deployments |
+
+### Configuration
+
+Add the following to your Claude config file (create if it doesn't exist):
+
+| Platform | Config File Location |
+|----------|---------------------|
+| macOS | `/Users/<username>/.claude.json` |
+| Linux | `/home/<username>/.claude.json` |
+
+Both use `~/.claude.json` in shell commands.
+
+```json
+{
+  "mcpServers": {
+    "aos": {
+      "type": "http",
+      "url": "https://aos.originate.group/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_PAT_HERE"
+      }
+    },
+    "tflo": {
+      "type": "http",
+      "url": "https://tarkaflow.ai/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_PAT_HERE"
+      }
+    },
+    "infra": {
+      "type": "http",
+      "url": "https://infra.originate.group/mcp",
+      "headers": {
+        "X-API-Key": "YOUR_PAT_HERE"
+      }
+    }
+  }
+}
+```
+
+### Getting Your PAT
+
+1. Request a Personal Access Token from the platform admin
+2. The same PAT works for all three Originate services
+3. Replace `YOUR_PAT_HERE` with your actual token
+
+### Alternative: CLI Setup
+
+You can also configure servers via the Claude CLI:
 
 ```bash
-# Add RaaS MCP server
-claude mcp add raas --type http --url https://raas.originate.group/mcp --header "X-API-Key: YOUR_KEY"
+claude mcp add aos --type http --url https://aos.originate.group/mcp --header "X-API-Key: YOUR_PAT"
+claude mcp add tflo --type http --url https://tarkaflow.ai/mcp --header "X-API-Key: YOUR_PAT"
+claude mcp add infra --type http --url https://infra.originate.group/mcp --header "X-API-Key: YOUR_PAT"
 ```
+
+### Verifying Setup
+
+After configuration, restart Claude Code and run `/mcp` to verify all servers are connected. You should see tools prefixed with `mcp__aos__`, `mcp__tflo__`, and `mcp__infra__`.
 
 ## License
 
