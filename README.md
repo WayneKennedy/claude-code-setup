@@ -1,14 +1,15 @@
 # Local Dev Setup
 
-Personal configuration for local development environments - skills, global instructions, and permission settings for Claude Code CLI.
+Personal configuration for local development environments - global instructions, permission settings, and utility scripts for Claude Code CLI.
 
 ## What's Included
 
 | File | Purpose |
 |------|---------|
 | `CLAUDE.md` | Global instructions applied to all projects |
-| `skills/` | Personal skills (workflows, expertise patterns) |
+| `skills/bootstrap-vps/` | VPS bootstrap and hardening workflow |
 | `settings.local.json` | Permission rules for tool approval |
+| `bin/` | Utility scripts (tmux session launchers, shortcuts) |
 
 ## What's NOT Included
 
@@ -34,29 +35,9 @@ This creates symlinks from `~/.claude/` to this repo, so:
 
 ## Skills
 
-### TarkaFlow Build Pipeline
+This repo contains the `bootstrap-vps` skill for VPS provisioning and hardening.
 
-Skills execute in this order for implementation work:
-
-| # | Skill | Agent | Purpose |
-|---|-------|-------|---------|
-| 1 | `picking-up-work` | code | Select CR, verify readiness, gather context |
-| 2 | `test-readiness` | tester | Write tests for ACs (TDD Red phase) |
-| 3 | `implementation` | code | Make tests pass (TDD Green/Refactor) |
-| 4 | `local-test` | tester | Switch to local mode, run system tests locally |
-| 5 | `remote-test` | tester | Commit, push, monitor deployment, smoke test remote |
-| 6 | `completing-work` | code | Create imp/ldm/interface artifacts, transition to implemented |
-| 7 | `validation` | tester | Verify ACs met, transition to validated |
-| 8 | `preparing-release` | release_manager | Bundle validated work items for deployment |
-
-### Supporting Skills
-
-| Skill | Purpose |
-|-------|---------|
-| `review-work-item` | Review and impact assess TarkaFlow Work Items (CR, BUG, DEBT) |
-| `deployment-sme` | Battle-tested patterns for GitHub Actions, Docker, SSH deployments |
-| `bootstrap-vps` | VPS bootstrap and hardening workflow |
-| `tarkaflow-developer-context` | Core TarkaFlow context (loaded at session start) |
+**Note:** TarkaFlow development pipeline skills (picking-up-work, implementation, validation, etc.) are managed in the [tarka-n8n-agents](../tarka-n8n-agents) repository.
 
 ## MCP Server Setup
 

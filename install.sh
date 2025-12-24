@@ -15,7 +15,7 @@ echo ""
 mkdir -p ~/.claude
 
 # Items to symlink (safe, no secrets)
-ITEMS="CLAUDE.md skills settings.local.json settings.json commands hooks"
+ITEMS="CLAUDE.md settings.local.json settings.json commands hooks"
 
 for item in $ITEMS; do
     target="$HOME/.claude/$item"
@@ -107,7 +107,6 @@ echo "      Your ~/.local/bin/ commands are also linked."
 echo ""
 echo "To verify:"
 echo "  ls -la ~/.claude/CLAUDE.md"
-echo "  ls -la ~/.claude/skills"
 echo "  ls -la ~/.local/bin/cc"
 echo ""
 echo "Changes you make will be tracked in git. Remember to commit and push."
